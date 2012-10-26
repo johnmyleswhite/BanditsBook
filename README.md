@@ -18,6 +18,8 @@ This codebase is split up by language. In most languages, there are parallel imp
 
 In R, there is a body of code for visualizing the results of simulations and analyzing those results. The R code would benefit from some refactoring to make it DRYer.
 
+If you're interested in seeing how some of these algorithms would be implemented in Javascript, you should try out Mark Reid's code: http://mark.reid.name/code/bandits/
+
 # Getting Started
 
 To try out this code, you can go into the Python or Julia directories and then run the demo script.
