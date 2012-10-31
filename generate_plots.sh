@@ -35,4 +35,5 @@ Rscript r/softmax/plot_standard.R
 Rscript r/softmax/plot_annealing.R
 Rscript r/ucb/plot_ucb1.R
 Rscript r/exp3/plot_exp3.R
+Rscript r/comparisons/plot_simple_comparisons.R
 Rscript r/comparisons/plot_comparisons.R

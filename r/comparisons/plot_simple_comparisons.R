@@ -38,7 +38,7 @@ ggplot(stats, aes(x = T, y = V1, group = Algorithm, color = Algorithm)) +
   xlab("Time") +
   ylab("Probability of Selecting Best Arm") +
   ggtitle("Accuracy of Different Algorithms")
-ggsave("r/graphs/comparisons_average_accuracy.pdf")
+ggsave("r/graphs/simple_comparisons_average_accuracy.pdf")
 
 # Plot variance of chosen arms as a function of time.
 stats <- ddply(results,
