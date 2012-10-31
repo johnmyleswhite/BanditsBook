@@ -4,21 +4,25 @@
 
 # Use Julia for simulations
 
-# julia julia/algorithms/epsilon_greedy/test_standard.jl
-# julia julia/algorithms/epsilon_greedy/test_annealing.jl
-# julia julia/algorithms/softmax/test_standard.jl
-# julia julia/algorithms/softmax/test_annealing.jl
-# julia julia/algorithms/ucb/test_ucb1.jl
-# julia julia/algorithms/exp3/test_exp3.jl
+# cd julia
+# julia algorithms/epsilon_greedy/test_standard.jl
+# julia algorithms/epsilon_greedy/test_annealing.jl
+# julia algorithms/softmax/test_standard.jl
+# julia algorithms/softmax/test_annealing.jl
+# julia algorithms/ucb/test_ucb1.jl
+# julia algorithms/exp3/test_exp3.jl
+# cd ..
 
 # Use Python for simulations
 
-# python python/algorithms/epsilon_greedy/test_standard.py
-# python python/algorithms/epsilon_greedy/test_annealing.py
-# python python/algorithms/softmax/test_standard.py
-# python python/algorithms/softmax/test_annealing.py
-# python python/algorithms/ucb/test_ucb1.py
-# python python/algorithms/exp3/test_exp3.py
+# cd python
+# python algorithms/epsilon_greedy/test_standard.py
+# python algorithms/epsilon_greedy/test_annealing.py
+# python algorithms/softmax/test_standard.py
+# python algorithms/softmax/test_annealing.py
+# python algorithms/ucb/test_ucb1.py
+# python algorithms/exp3/test_exp3.py
+# cd ..
 
 # Use R for generating graphs
 
