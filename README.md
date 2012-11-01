@@ -15,6 +15,7 @@ This codebase is split up by language. In most languages, there are parallel imp
 
 * Python
 * Julia
+* Ruby
 
 In R, there is a body of code for visualizing the results of simulations and analyzing those results. The R code would benefit from some refactoring to make it DRYer.
 
@@ -34,19 +35,26 @@ In Julia, that looks like:
 
 You should step through that code line-by-line to understand what the functions are doing. The book provides more in-depth explanations of how the algorithms work.
 
+The Ruby code was contributed by Kashif Rasul. If you're interested in translating the code into another language, please submit a pull request. I will merge any new implementations as soon as I can.
+
 # Adding New Algorithms: API Expectations
 
 As described in the book, a Bandit algorithm should implement two methods:
 
-* `select_arm()`
-* `update()`
+* `select_arm()`: A method that returns the index of the Arm that the Bandit object selects on the current play. No arguments are required.
+* `update()`: A method that updates the internal state of the Bandit object in response to its most recently selected arm's reward. The index of the chosen arm and the amount of reward received must be passed as arguments.
 
 As described in the book, an Arm simulator should implement:
 
-* `draw()`
+* `draw()`: A method that returns a single instance of reward from the arm that was pulled. No arguments are required.
 
 In addition, the Bandit algorithms are designed to implement one additional method used in simulations:
 
-* `initialize()`
+* `initialize()`: A method that returns nothing. Instead, this method resets all of the data-driven variables in a Bandit object. For most objects, this resets the counts and values field to their initial states. No arguments are required.
 
-In a future iteration, this code should be extended to provide Environment objects, which encapsulate not only a set of Arms, but also a mechanism for having those Arms change over time.
+Beyond the testing framework described in the book, I am currently providing an additional system built around the concept of an Environment. Environment objects encapsulate not only a set of Arms, but also a mechanism for having those Arms change over time. This allows you to simulate complex scenarios that aren't well described by a constant set of arms.
+
+If you would like to implement your own Environment, you will need to provide a very simple interface. The Environment interface requries you to implement two methods:
+
+* `arms()`: A method that returns the array of arms that exist at time T. You must pass T as an argument.
+* `n_arms()`: A method that returns the number of arms that the environment will return with each call to `arms()`. While the arms may change over time, the number of arms should not. No arguments are required.
