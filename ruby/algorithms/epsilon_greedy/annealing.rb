@@ -3,13 +3,18 @@ class AnnealingEpsilonGreedy
     @counts = Array.new(n_arms, 0)
     @values = Array.new(n_arms, 0.0)
   end
+  
+  def reset(n_arms)
+    @counts = Array.new(n_arms, 0)
+    @values = Array.new(n_arms, 0.0)
+  end
 
   def select_arm
     t = @counts.reduce(:+) + 1
     epsilon = 1 / Math.log(t + 0.0000001)
 
     if rand() > epsilon
-      @values.rindex(@values.max)
+      @values.index(@values.max)
     else
       rand(@values.size)
     end

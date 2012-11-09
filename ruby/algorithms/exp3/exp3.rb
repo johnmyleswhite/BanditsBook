@@ -4,6 +4,10 @@ class Exp3
     @weights = Array.new(n_arms, 1.0)
   end
 
+  def reset(n_arms)
+    @weights = Array.new(n_arms, 1.0)
+  end
+
   def select_arm
     n_arms = @weights.size()
     total_weight = @weights.reduce(:+)

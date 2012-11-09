@@ -1,6 +1,6 @@
-class EpsilonGreedy
-  def initialize(epsilon, n_arms)
-    @epsilon = epsilon
+class Softmax
+  def initialize(temperature, n_arms)
+    @temperature = temperature
     @counts = Array.new(n_arms, 0)
     @values = Array.new(n_arms, 0.0)
   end
@@ -11,11 +11,9 @@ class EpsilonGreedy
   end
 
   def select_arm
-    if rand() > @epsilon
-      @values.index(@values.max)
-    else
-      rand(@values.size)
-    end
+    z = @values.collect{|i| Math.exp(i/@temperature)}.reduce(:+)
+    probs = @values.collect{|i| Map.exp(i/@temperature)/z}
+    categorical_draw(probs)
   end
 
   def update(chosen_arm, reward)
@@ -31,5 +29,21 @@ class EpsilonGreedy
     end
 
     return
+  end
+
+  private
+  def categorical_draw(probs)
+    z = rand()
+    cum_prob = 0.0
+
+    probs.size().times do |i|
+      prob = probs[i]
+      cum_prob += prob
+      if cum_prob > z
+        return i
+      end
+    end
+
+    return probs.size() - 1
   end
 end

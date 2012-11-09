@@ -1,4 +1,4 @@
-class EpsilonGreedy
+class UCB1
   def initialize(epsilon, n_arms)
     @epsilon = epsilon
     @counts = Array.new(n_arms, 0)
@@ -11,11 +11,18 @@ class EpsilonGreedy
   end
 
   def select_arm
-    if rand() > @epsilon
-      @values.index(@values.max)
-    else
-      rand(@values.size)
+    arm = @count.index(0)
+    return arm unless arm.is_nil?
+
+    ucb_values = Array.new(@count.size, 0.0)
+    total_counts = @counts.reduce(:+)
+
+    @counts.size do |arm|
+      bonus = Math.sqrt((2 * Math.log(total_counts)) / @counts[arm].to_f)
+      ucb_values[arm] = @values[arm] + bonus
     end
+
+     @ucb_values.index(@ucb_values.max)
   end
 
   def update(chosen_arm, reward)

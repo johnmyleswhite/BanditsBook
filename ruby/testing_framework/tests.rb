@@ -7,6 +7,7 @@ def test_algorithm(algo, arms, num_sims, horizon)
 
   num_sims.times do |sim|
     sim = sim + 1
+    algo.reset(arms.size)
     horizon.times do |t|
       t = t + 1
       index = (sim-1) * horizon + (t-1)
