@@ -5,9 +5,14 @@ class EpsilonGreedy
     @values = Array.new(n_arms, 0.0)
   end
 
+  def reset(n_arms)
+    @counts = Array.new(n_arms, 0)
+    @values = Array.new(n_arms, 0.0)
+  end
+
   def select_arm
     if rand() > @epsilon
-      @values.rindex(@values.max)
+      @values.index(@values.max)
     else
       rand(@values.size)
     end
