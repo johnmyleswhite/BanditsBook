@@ -20,17 +20,13 @@ end
 function select_arm(algo::Softmax)
   z = sum(exp(algo.values ./ algo.temperature))
   probs = exp(algo.values ./ algo.temperature) ./ z
-  rand(Categorical(probs))
+  return rand(Categorical(probs))
 end
 
 function update(algo::Softmax, chosen_arm::Int64, reward::Real)
+  algo.counts[chosen_arm] += 1
   n = algo.counts[chosen_arm]
-  algo.counts[chosen_arm] = n + 1
-  
+
   value = algo.values[chosen_arm]
-  if n == 0
-    algo.values[chosen_arm] = reward
-  else
-    algo.values[chosen_arm] = ((n - 1) / n) * value + (1 / n) * reward
-  end
+  algo.values[chosen_arm] = ((n - 1) / n) * value + (1 / n) * reward
 end

@@ -26,14 +26,10 @@ class AnnealingEpsilonGreedy():
       return random.randrange(len(self.values))
   
   def update(self, chosen_arm, reward):
+    self.counts[chosen_arm] = self.counts[chosen_arm] + 1
     n = self.counts[chosen_arm]
-    self.counts[chosen_arm] = n + 1
     
     value = self.values[chosen_arm]
-    if n == 0:
-      self.values[chosen_arm] = reward
-    else:
-      new_value = ((n - 1) / float(n)) * value + (1 / float(n)) * reward
-      self.values[chosen_arm] = new_value
+    new_value = ((n - 1) / float(n)) * value + (1 / float(n)) * reward
+    self.values[chosen_arm] = new_value
     return
-

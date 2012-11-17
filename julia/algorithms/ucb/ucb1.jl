@@ -22,21 +22,17 @@ end
 
 function select_arm(algo::UCB)
   if any(algo.counts .== 0)
-    find(algo.counts .== 0)[1]
+    return find(algo.counts .== 0)[1]
   else
     ucb_values = algo.values + sqrt((2 * log(sum(algo.counts))) ./ algo.counts)
-    ind_max(ucb_values)
+    return ind_max(ucb_values)
   end
 end
 
 function update(algo::UCB, chosen_arm::Int64, reward::Real)
+  algo.counts[chosen_arm] += 1
   n = algo.counts[chosen_arm]
-  algo.counts[chosen_arm] = n + 1
-  
+
   value = algo.values[chosen_arm]
-  if n == 0
-    algo.values[chosen_arm] = reward
-  else
-    algo.values[chosen_arm] = ((n - 1) / n) * value + (1 / n) * reward
-  end
+  algo.values[chosen_arm] = ((n - 1) / n) * value + (1 / n) * reward
 end

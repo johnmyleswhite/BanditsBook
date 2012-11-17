@@ -19,22 +19,18 @@ end
 function select_arm(algo::AnnealingEpsilonGreedy)
   t = sum(algo.counts) + 1
   epsilon = 1 / log(t + eps(1.0))
-  
+
   if rand() > epsilon
-    ind_max(algo.values)
+    return ind_max(algo.values)
   else
-    randi(length(algo.values))
+    return randi(length(algo.values))
   end
 end
 
 function update(algo::AnnealingEpsilonGreedy, chosen_arm::Int64, reward::Real)
+  algo.counts[chosen_arm] += 1
   n = algo.counts[chosen_arm]
-  algo.counts[chosen_arm] = n + 1
-  
+
   value = algo.values[chosen_arm]
-  if n == 0
-    algo.values[chosen_arm] = reward
-  else
-    algo.values[chosen_arm] = ((n - 1) / n) * value + (1 / n) * reward
-  end
+  algo.values[chosen_arm] = ((n - 1) / n) * value + (1 / n) * reward
 end

@@ -12,7 +12,7 @@ def categorical_draw(probs):
   
   return len(probs) - 1
 
-class Softmax:
+class Hedge:
   def __init__(self, temperature, counts, values):
     self.temperature = temperature
     self.counts = counts
@@ -28,12 +28,10 @@ class Softmax:
     z = sum([math.exp(v / self.temperature) for v in self.values])
     probs = [math.exp(v / self.temperature) / z for v in self.values]
     return categorical_draw(probs)
-
+  
   def update(self, chosen_arm, reward):
     self.counts[chosen_arm] = self.counts[chosen_arm] + 1
-    n = self.counts[chosen_arm]
     
     value = self.values[chosen_arm]
-    new_value = ((n - 1) / float(n)) * value + (1 / float(n)) * reward
-    self.values[chosen_arm] = new_value
+    self.values[chosen_arm] = value + reward
     return

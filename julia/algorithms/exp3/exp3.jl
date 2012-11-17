@@ -18,15 +18,15 @@ end
 function select_arm(algo::Exp3)
   K = length(algo.weights)
   probs = (1 - algo.gamma) * (algo.weights ./ sum(algo.weights)) + (algo.gamma / K)
-  rand(Categorical(probs))
+  return rand(Categorical(probs))
 end
 
 function update(algo::Exp3, chosen_arm::Int64, reward::Real)
   K = length(algo.weights)
   probs = (1 - algo.gamma) * (algo.weights ./ sum(algo.weights)) + (algo.gamma / K)
-  
+
   x = zeros(K)
   x[chosen_arm] = reward / probs[chosen_arm]
-  
+
   algo.weights = algo.weights .* exp((algo.gamma / K) .* x)  
 end

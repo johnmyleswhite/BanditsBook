@@ -21,17 +21,13 @@ function select_arm(algo::AnnealingSoftmax)
   temperature = 1 / log(t + eps(1.0))
   z = sum(exp(algo.values ./ temperature))
   probs = exp(algo.values ./ temperature) ./ z
-  rand(Categorical(probs))
+  return rand(Categorical(probs))
 end
 
 function update(algo::AnnealingSoftmax, chosen_arm::Int64, reward::Real)
+  algo.counts[chosen_arm] += 1
   n = algo.counts[chosen_arm]
-  algo.counts[chosen_arm] = n + 1
-  
+
   value = algo.values[chosen_arm]
-  if n == 0
-    algo.values[chosen_arm] = reward
-  else
-    algo.values[chosen_arm] = ((n - 1) / n) * value + (1 / n) * reward
-  end
+  algo.values[chosen_arm] = ((n - 1) / n) * value + (1 / n) * reward
 end

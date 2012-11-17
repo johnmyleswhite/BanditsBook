@@ -1,5 +1,5 @@
 load("distributions.jl")
-import Distributions.*
+using Distributions
 
 function ind_max(x)
   findmax(x)[2]
@@ -19,6 +19,7 @@ load("algorithms/softmax/standard.jl")
 load("algorithms/softmax/annealing.jl")
 load("algorithms/ucb/ucb1.jl")
 load("algorithms/exp3/exp3.jl")
+load("algorithms/hedge/hedge.jl")
 
 load("environments/2_seasonal_arms.jl")
 load("environments/5_constant_arms.jl")
