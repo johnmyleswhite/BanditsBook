@@ -17,7 +17,9 @@ from algorithms.epsilon_greedy.annealing import *
 from algorithms.softmax.standard import *
 from algorithms.softmax.annealing import *
 from algorithms.ucb.ucb1 import *
+from algorithms.ucb.ucb2 import *
 from algorithms.exp3.exp3 import *
+from algorithms.hedge.hedge import *
 
 # # Testing framework
 from testing_framework.tests import *

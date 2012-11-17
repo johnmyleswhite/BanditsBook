@@ -3,8 +3,10 @@
 This repo contains code in several languages that implements several standard algorithms for solving the Multi-Armed Bandits Problem, including:
 
 * epsilon-Greedy
-* Softmax
+* Softmax (Boltzmann)
 * UCB1
+* UCB2
+* Hedge
 * Exp3
 
 It also contains code that provides a testing framework for bandit algorithms based around simple Monte Carlo simulations.
