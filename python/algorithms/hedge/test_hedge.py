@@ -11,7 +11,7 @@ print("Best arm is " + str(ind_max(means)))
 
 f = open("algorithms/hedge/hedge_results.tsv", "w")
 
-for eta in [0.1, 0.2, 0.3, 0.4, 0.5]:
+for eta in [.5, .8, .9, 1, 2]:
   algo = Hedge(eta, [], [])
   algo.initialize(n_arms)
   results = test_algorithm(algo, arms, 5000, 250)
