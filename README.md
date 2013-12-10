@@ -23,6 +23,12 @@ In R, there is a body of code for visualizing the results of simulations and ana
 
 If you're interested in seeing how some of these algorithms would be implemented in Javascript, you should try out Mark Reid's code: http://mark.reid.name/code/bandits/
 
+If you're looking for Java code, try Dani Sola's work: https://github.com/danisola/bandit
+
+If you're looking for Go code, try Rany Keddo's work: https://github.com/purzelrakete/bandit
+
+If you're looking for Clojure code, try Paul Ingles's work: https://github.com/pingles/clj-bandit
+
 # Getting Started
 
 To try out this code, you can go into the Python or Julia directories and then run the demo script.
