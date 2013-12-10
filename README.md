@@ -29,6 +29,8 @@ If you're looking for Go code, try Rany Keddo's work: https://github.com/purzelr
 
 If you're looking for Clojure code, try Paul Ingles's work: https://github.com/pingles/clj-bandit
 
+For a Flask implementation, see https://github.com/DeaconDesperado/flask_mab
+
 # Getting Started
 
 To try out this code, you can go into the Python or Julia directories and then run the demo script.
