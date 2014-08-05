@@ -1,6 +1,9 @@
 # Convenience functions
 def ind_max(x):
   m = max(x)
+  #in case of same values, decide randomly
+  if all(map(lambda k: k==m, x)):
+    return random.randrange(0,len(x))
   return x.index(m)
 
 # Need access to random numbers
