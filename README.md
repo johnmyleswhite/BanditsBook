@@ -25,6 +25,8 @@ If you're interested in seeing how some of these algorithms would be implemented
 
 If you're looking for Java code, try Dani Sola's work: https://github.com/danisola/bandit
 
+If you're looking for Scala code, try everpeace(Shingo Omura)'s work: https://github.com/everpeace/banditsbook-scala
+
 If you're looking for Go code, try Rany Keddo's work: https://github.com/purzelrakete/bandit
 
 If you're looking for Clojure code, try Paul Ingles's work: https://github.com/pingles/clj-bandit
