@@ -31,6 +31,8 @@ If you're looking for Go code, try Rany Keddo's work: https://github.com/purzelr
 
 If you're looking for Clojure code, try Paul Ingles's work: https://github.com/pingles/clj-bandit
 
+If you're looking for Swift code, see https://github.com/crenwick/Swiper
+
 For a Flask implementation, see https://github.com/DeaconDesperado/flask_mab
 
 # Getting Started
