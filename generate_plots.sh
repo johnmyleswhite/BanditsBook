@@ -22,6 +22,7 @@
 # python algorithms/softmax/test_annealing.py
 # python algorithms/ucb/test_ucb1.py
 # python algorithms/exp3/test_exp3.py
+# python algorithms/ts/test_thompson_sampling.py
 # cd ..
 
 # Use R for generating graphs
