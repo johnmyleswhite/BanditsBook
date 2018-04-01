@@ -1,11 +1,11 @@
-type BernoulliArm <: BanditArm
+struct BernoulliArm <: BanditArm
   p::Float64
 end
 
 function draw(arm::BernoulliArm)
   if rand() > arm.p
-    0
+    return 0
   else
-    1
+    return 1
   end
 end

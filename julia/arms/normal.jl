@@ -1,4 +1,4 @@
-type NormalArm <: BanditArm
+struct NormalArm <: BanditArm
   mu::Float64
   sigma::Float64
 end
