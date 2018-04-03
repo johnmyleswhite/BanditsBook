@@ -9,7 +9,7 @@ println("Best arm is $(ind_max(means))")
 
 total_results = zeros(0, 5)
 
-algo = AnnealingEpsilonGreedy(zeros(Int64, n_arms), zeros(n_arms))
+algo = AnnealingEpsilonGreedy(zeros(Int, n_arms), zeros(n_arms))
 results = test_algorithm(algo, arms, 5000, 250)
 total_results = vcat(total_results, results)
 
