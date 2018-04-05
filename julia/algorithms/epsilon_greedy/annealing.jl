@@ -1,14 +1,14 @@
-type AnnealingEpsilonGreedy <: BanditAlgorithm
-  counts::Vector{Int64}
+mutable struct AnnealingEpsilonGreedy <: BanditAlgorithm
+  counts::Vector{Int}
   values::Vector{Float64}
 end
 
-function AnnealingEpsilonGreedy(n_arms::Int64)
+function AnnealingEpsilonGreedy(n_arms::Int)
   AnnealingEpsilonGreedy(zeros(Int64, n_arms), zeros(n_arms))
 end
 
-function initialize(algo::AnnealingEpsilonGreedy, n_arms::Int64)
-  algo.counts = zeros(Int64, n_arms)
+function initialize(algo::AnnealingEpsilonGreedy, n_arms::Int)
+  algo.counts = zeros(Int, n_arms)
   algo.values = zeros(n_arms)
 end
 
@@ -21,13 +21,13 @@ function select_arm(algo::AnnealingEpsilonGreedy)
   epsilon = 1 / log(t + eps(1.0))
 
   if rand() > epsilon
-    return ind_max(algo.values)
+    return indmax(algo.values)
   else
-    return randi(length(algo.values))
+    return rand(1:length(algo.values))
   end
 end
 
-function update(algo::AnnealingEpsilonGreedy, chosen_arm::Int64, reward::Real)
+function update(algo::AnnealingEpsilonGreedy, chosen_arm::Int, reward::Real)
   algo.counts[chosen_arm] += 1
   n = algo.counts[chosen_arm]
 

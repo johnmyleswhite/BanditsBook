@@ -1,4 +1,4 @@
-load("core.jl")
+include("core.jl")
 
 total_results = zeros(0, 6)
 

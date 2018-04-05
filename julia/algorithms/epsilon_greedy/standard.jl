@@ -1,14 +1,14 @@
-type EpsilonGreedy <: BanditAlgorithm
+mutable struct EpsilonGreedy <: BanditAlgorithm
   epsilon::Float64
-  counts::Vector{Int64}
+  counts::Vector{Int}
   values::Vector{Float64}
 end
 
-function EpsilonGreedy(epsilon::Float64, n_arms::Int64)
+function EpsilonGreedy(epsilon::Float64, n_arms::Int)
   EpsilonGreedy(epsilon, zeros(Int64, n_arms), zeros(n_arms))
 end
 
-function initialize(algo::EpsilonGreedy, n_arms::Int64)
+function initialize(algo::EpsilonGreedy, n_arms::Int)
   algo.counts = zeros(Int64, n_arms)
   algo.values = zeros(n_arms)
 end
@@ -19,16 +19,16 @@ end
 
 function select_arm(algo::EpsilonGreedy)
   if rand() > algo.epsilon
-    return ind_max(algo.values)
+    return indmax(algo.values)
   else
-    return randi(length(algo.values))
+    return rand(1:length(algo.values))
   end
 end
 
-function update(algo::EpsilonGreedy, chosen_arm::Int64, reward::Real)
+function update(algo::EpsilonGreedy, chosen_arm::Int, reward::Real)
   algo.counts[chosen_arm] += 1
   n = algo.counts[chosen_arm]
-  
+
   value = algo.values[chosen_arm]
   algo.values[chosen_arm] = ((n - 1) / n) * value + (1 / n) * reward
 end

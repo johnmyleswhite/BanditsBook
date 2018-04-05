@@ -1,15 +1,15 @@
-load("core.jl")
+include("../../core.jl")
 
 srand(1)
 means = [0.1, 0.1, 0.1, 0.1, 0.9]
 n_arms = length(means)
-means = means[randperm(n_arms)]
+shuffle!(means)
 arms = map(mu -> BernoulliArm(mu), means)
-println("Best arm is $(ind_max(means))")
+println("Best arm is $(indmax(means))")
 
 total_results = zeros(0, 5)
 
-algo = AnnealingEpsilonGreedy(zeros(Int64, n_arms), zeros(n_arms))
+algo = AnnealingEpsilonGreedy(zeros(Int, n_arms), zeros(n_arms))
 results = test_algorithm(algo, arms, 5000, 250)
 total_results = vcat(total_results, results)
 

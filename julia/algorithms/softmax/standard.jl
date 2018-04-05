@@ -1,15 +1,15 @@
-type Softmax <: BanditAlgorithm
+mutable struct Softmax <: BanditAlgorithm
   temperature::Float64
-  counts::Vector{Int64}
+  counts::Vector{Int}
   values::Vector{Float64}
 end
 
-function Softmax(n_arms::Int64, temperature::Float64)
-  Softmax(temperature, zeros(Int64, n_arms), zeros(n_arms))
+function Softmax(n_arms::Int, temperature::Float64)
+  Softmax(temperature, zeros(Int, n_arms), zeros(n_arms))
 end
 
 function initialize(algo::Softmax, n_arms::Int64)
-  algo.counts = zeros(Int64, n_arms)
+  algo.counts = zeros(Int, n_arms)
   algo.values = zeros(n_arms)
 end
 
@@ -23,7 +23,7 @@ function select_arm(algo::Softmax)
   return rand(Categorical(probs))
 end
 
-function update(algo::Softmax, chosen_arm::Int64, reward::Real)
+function update(algo::Softmax, chosen_arm::Int, reward::Real)
   algo.counts[chosen_arm] += 1
   n = algo.counts[chosen_arm]
 
