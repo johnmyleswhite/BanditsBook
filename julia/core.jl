@@ -1,30 +1,26 @@
-load("distributions.jl")
+#load("distributions.jl")
 using Distributions
 
-function ind_max(x)
-  findmax(x)[2]
-end
+abstract type BanditAlgorithm end
+abstract type BanditArm end
+abstract type BanditEnvironment end
 
-abstract BanditAlgorithm
-abstract BanditArm
-abstract BanditEnvironment
+include("arms/adversarial.jl")
+include("arms/bernoulli.jl")
+include("arms/normal.jl")
 
-load("arms/adversarial.jl")
-load("arms/bernoulli.jl")
-load("arms/normal.jl")
+include("algorithms/epsilon_greedy/standard.jl")
+include("algorithms/epsilon_greedy/annealing.jl")
+include("algorithms/softmax/standard.jl")
+include("algorithms/softmax/annealing.jl")
+include("algorithms/ucb/ucb1.jl")
+include("algorithms/exp3/exp3.jl")
+include("algorithms/hedge/hedge.jl")
 
-load("algorithms/epsilon_greedy/standard.jl")
-load("algorithms/epsilon_greedy/annealing.jl")
-load("algorithms/softmax/standard.jl")
-load("algorithms/softmax/annealing.jl")
-load("algorithms/ucb/ucb1.jl")
-load("algorithms/exp3/exp3.jl")
-load("algorithms/hedge/hedge.jl")
+include("environments/2_seasonal_arms.jl")
+include("environments/5_constant_arms.jl")
+include("environments/5_drifting_arms.jl")
+include("environments/5_near_uniform_arms.jl")
+include("environments/5_step_function_arms.jl")
 
-load("environments/2_seasonal_arms.jl")
-load("environments/5_constant_arms.jl")
-load("environments/5_drifting_arms.jl")
-load("environments/5_near_uniform_arms.jl")
-load("environments/5_step_function_arms.jl")
-
-load("testing_framework/tests.jl")
+include("testing_framework/tests.jl")

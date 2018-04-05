@@ -2,17 +2,17 @@
 # Then always play machine j that maximizes UCB value.
 # Like sqrt(log(sum(counts).^2)) / sqrt(counts[j])
 
-type UCB <: BanditAlgorithm
-  counts::Vector{Int64}
+mutable struct UCB <: BanditAlgorithm
+  counts::Vector{Int}
   values::Vector{Float64}
 end
 
-function UCB(n_arms::Int64)
-  UCB(zeros(Int64, n_arms), zeros(n_arms))
+function UCB(n_arms::Int)
+  UCB(zeros(Int, n_arms), zeros(n_arms))
 end
 
-function initialize(algo::UCB, n_arms::Int64)
-  algo.counts = zeros(Int64, n_arms)
+function initialize(algo::UCB, n_arms::Int)
+  algo.counts = zeros(Int, n_arms)
   algo.values = zeros(n_arms)
 end
 
@@ -25,11 +25,11 @@ function select_arm(algo::UCB)
     return find(algo.counts .== 0)[1]
   else
     ucb_values = algo.values + sqrt((2 * log(sum(algo.counts))) ./ algo.counts)
-    return ind_max(ucb_values)
+    return indmax(ucb_values)
   end
 end
 
-function update(algo::UCB, chosen_arm::Int64, reward::Real)
+function update(algo::UCB, chosen_arm::Int, reward::Real)
   algo.counts[chosen_arm] += 1
   n = algo.counts[chosen_arm]
 

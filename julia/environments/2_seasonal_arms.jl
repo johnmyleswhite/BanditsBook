@@ -1,8 +1,8 @@
-type TwoSeasonalArms <: BanditEnvironment
-  season_length::Int64
+struct TwoSeasonalArms <: BanditEnvironment
+  season_length::Int
 end
 
-function arms(env::TwoSeasonalArms, trial::Int64)
+function arms(env::TwoSeasonalArms, trial::Int)
   if div(trial, env.season_length) % 2 == 0
     [BernoulliArm(0.1), BernoulliArm(0.9)]
   else

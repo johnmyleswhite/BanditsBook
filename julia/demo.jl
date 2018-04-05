@@ -1,4 +1,4 @@
-load("core.jl")
+include("core.jl")
 
 arm1 = BernoulliArm(0.7)
 draw(arm1)

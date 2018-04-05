@@ -1,11 +1,11 @@
-load("core.jl")
+include("../../core.jl")
 
 srand(1)
 means = [0.1, 0.1, 0.1, 0.1, 0.9]
 n_arms = length(means)
-means = means[randperm(n_arms)]
+shuffle!(means)
 arms = map(mu -> BernoulliArm(mu), means)
-println("Best arm is $(ind_max(means))")
+println("Best arm is $(indmax(means))")
 
 total_results = zeros(0, 5)
 
