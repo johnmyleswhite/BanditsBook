@@ -1,10 +1,6 @@
 import random
 import math
 
-def ind_max(x):
-  m = max(x)
-  return x.index(m)
-
 class AnnealingEpsilonGreedy():
   def __init__(self, counts, values):
     self.counts = counts
@@ -21,7 +17,7 @@ class AnnealingEpsilonGreedy():
     epsilon = 1 / math.log(t + 0.0000001)
     
     if random.random() > epsilon:
-      return ind_max(self.values)
+      return random.choice([i for i, v in enumerate(self.values) if v == max(self.values)])
     else:
       return random.randrange(len(self.values))
   
