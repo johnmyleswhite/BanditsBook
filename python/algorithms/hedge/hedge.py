@@ -35,7 +35,6 @@ class Hedge:
         probs.append(math.exp(v / self.temperature) / z)
       except OverflowError:
         probs.append(math.inf)
-    probs = [math.exp(v / self.temperature) / z for v in self.values]
     return categorical_draw(probs)
   
   def update(self, chosen_arm, reward):
