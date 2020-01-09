@@ -1,8 +1,5 @@
 import math
-
-def ind_max(x):
-  m = max(x)
-  return x.index(m)
+import random
 
 class UCB1():
   def __init__(self, counts, values):
@@ -26,7 +23,7 @@ class UCB1():
     for arm in range(n_arms):
       bonus = math.sqrt((2 * math.log(total_counts)) / float(self.counts[arm]))
       ucb_values[arm] = self.values[arm] + bonus
-    return ind_max(ucb_values)
+    return random.choice([i for i, v in enumerate(ucb_values) if v == max(ucb_values)])
   
   def update(self, chosen_arm, reward):
     self.counts[chosen_arm] = self.counts[chosen_arm] + 1
