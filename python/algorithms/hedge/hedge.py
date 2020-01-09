@@ -25,7 +25,16 @@ class Hedge:
     return
   
   def select_arm(self):
-    z = sum([math.exp(v / self.temperature) for v in self.values])
+    try:
+      z = sum([math.exp(v / self.temperature) for v in self.values])
+    except OverflowError:
+      z = math.inf
+    probs = []
+    for v in self.values:
+      try:
+        probs.append(math.exp(v / self.temperature) / z)
+      except OverflowError:
+        probs.append(math.inf)
     probs = [math.exp(v / self.temperature) / z for v in self.values]
     return categorical_draw(probs)
   
